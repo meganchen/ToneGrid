@@ -8,13 +8,13 @@ import java.util.*;
 public class ToneGrid{
 	
 	private LinkedList<LinkedList<Boolean>> beats;
-	private final int GRID_DIMENSION = 16; 
+	private final int GRID_DIMENSION = 4; 
 	
 	/*ToneGrid constructor. Instantiates a 16x16 ToneGrid and the default value of each node is FALSE.
 	*/
 	public ToneGrid(){
 		beats = new LinkedList<LinkedList<Boolean>>();
-
+		
 		//adds GRID_DIMENSION nodes to the beats LinkedList
 		for(int colCount = 0; beats.size() < GRID_DIMENSION; colCount++){
 			//adds a LinkedList of Booleans at each node of the beats LinkedList
@@ -24,7 +24,6 @@ public class ToneGrid{
 			while(colList.size() < GRID_DIMENSION)
 				colList.add(false);
 		}
-		
 	}
 	
 	/*toString()
@@ -57,7 +56,7 @@ public class ToneGrid{
 		return beats.get(numBeat);
 	}
 	
-	/*getBool(). Gets the boolean value of a particular location in the ToneMatrix
+	/*getBool(). Gets the boolean value of a particular location in the ToneGrid
 	*@param numBeat beat number (index in "beats" LinkedList)
 	*@param numNote note number (index in "notes" LinkedList)
 	*@return the location's value (true/false)
@@ -66,7 +65,7 @@ public class ToneGrid{
 		return getCol(numBeat).get(numNote);
 	}
 	
-	/*setTrue(). Sets the note at a particular location in the ToneMatrix as true.
+	/*setTrue(). Sets the note at a particular location in the ToneGrid as true.
 	*@param numBeat beat number (index in "beats" LinkedList)
 	*@param numNote note number (index in "notes" LinkedList)
 	*/
@@ -74,12 +73,18 @@ public class ToneGrid{
 		getCol(numBeat).set(numNote, true);
 	}
 	
-	/*setFalse(). Sets a particular location in the ToneMatrix as false.
+	/*setFalse(). Sets a particular location in the ToneGrid as false.
 	*@param numBeat beat number (index in "beats" LinkedList)
 	*@param numNote note number (index in "notes" LinkedList)
 	*/
 	public void setFalse(int numBeat, int numNote){
 		getCol(numBeat).set(numNote, false);
+	}
+	
+	/*clear(). Resets all values in the ToneGrid to false
+	*/
+	public void clear(){
+		ToneGrid temp = new ToneGrid();
 	}
 	
 	/*toggle(). Switches between true and false
@@ -109,6 +114,7 @@ public class ToneGrid{
 		return s;
 	}
 	
+	/*main method. Tests code within this class*/
 	public static void main(String[]args){
 		ToneGrid tg = new ToneGrid();
 		System.out.println("Default ToneGrid:\n" + tg);
@@ -116,7 +122,6 @@ public class ToneGrid{
 		tg.setTrue(0,2);
 		tg.setTrue(1,1);
 		tg.setTrue(3,3);
-		tg.setTrue(15,15);
 		System.out.println("Get all true locations of beat/node 0 (Expect \"0 2\"): " + tg.colTraverse(0));
 		System.out.println(tg);
 		tg.setFalse(0,0);
