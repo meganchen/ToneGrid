@@ -37,7 +37,7 @@ public class ToneGrid{
 		for(int i = 0; i < GRID_DIMENSION; i++){
 			//traverses the inner "notes" linked list of booleans
 			for(int j = 0; j < GRID_DIMENSION; j++){
-				Boolean b = beats.get(i).get(j);
+				Boolean b = getBool(j,i);
 				if(b)
 					s += "T ";
 				else
@@ -48,22 +48,50 @@ public class ToneGrid{
 		return s;
 	}
 	
-	/*setTrue(). Sets a particular location in the ToneMatrix as TRUE.
+	
+	/*getCol().
+	*@param numBeat beat number (index in "beats" LinkedList)
+	*@returns the LinkedList contained within a node of the "beats" LinkedList
+	*/
+	public LinkedList<Boolean> getCol(int numBeat){
+		return beats.get(numBeat);
+	}
+	
+	/*getBool(). Gets the boolean value of a particular location in the ToneMatrix
+	*@param numBeat beat number (index in "beats" LinkedList)
+	*@param numNote note number (index in "notes" LinkedList)
+	*@return the location's value (true/false)
+	*/
+	public boolean getBool(int numBeat, int numNote){
+		return getCol(numBeat).get(numNote);
+	}
+	
+	/*setTrue(). Sets the note at a particular location in the ToneMatrix as true.
 	*@param numBeat beat number (index in "beats" LinkedList)
 	*@param numNote note number (index in "notes" LinkedList)
 	*/
 	public void setTrue(int numBeat, int numNote){
-		LinkedList colNotesList = beats.get(numBeat);
-		colNotesList.set(numNote, true);
+		getCol(numBeat).set(numNote, true);
 	}
 	
-	/*setFalse(). Sets a particular location in the ToneMatrix as FALSE.
+	/*setFalse(). Sets a particular location in the ToneMatrix as false.
 	*@param numBeat beat number (index in "beats" LinkedList)
 	*@param numNote note number (index in "notes" LinkedList)
 	*/
 	public void setFalse(int numBeat, int numNote){
-		LinkedList colNotesList = beats.get(numBeat);
-		colNotesList.set(numNote, false);
+		getCol(numBeat).set(numNote, false);
+	}
+	
+	/*toggle(). Switches between true and false
+	*@param numBeat beat number (index in "beats" LinkedList)
+	*@param numNote note number (index in "notes" LinkedList)
+	*/
+	public void toggle(int numBeat, int numNote){
+		//if true, set as false
+		if(getBool(numBeat, numNote))
+			setFalse(numBeat, numNote);
+		else //if false, set as true
+			setTrue(numBeat,numNote);
 	}
 	
 	/* colTraverse method.
@@ -92,6 +120,10 @@ public class ToneGrid{
 		System.out.println("Get all true locations of beat/node 0 (Expect \"0 2\"): " + tg.colTraverse(0));
 		System.out.println(tg);
 		tg.setFalse(0,0);
-		System.out.println(tg);
+		System.out.println("setFalse() Test at (0,0) (Expect \"F\"):\n" + tg);
+		tg.toggle(0,0);
+		System.out.println("Toggle Test at (0,0) (Expect \"T\"):\n" + tg);
+		tg.toggle(0,0);
+		System.out.println("Toggle Test at (0,0) (Expect \"F\"):\n" + tg);
 	}
 }
