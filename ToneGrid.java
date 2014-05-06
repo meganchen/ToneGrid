@@ -47,7 +47,6 @@ public class ToneGrid{
 		return s;
 	}
 	
-	
 	/*getCol().
 	*@param numBeat beat number (index in "beats" LinkedList)
 	*@returns the LinkedList contained within a node of the "beats" LinkedList
@@ -84,7 +83,7 @@ public class ToneGrid{
 	/*clear(). Resets all values in the ToneGrid to false
 	*/
 	public void clear(){
-		ToneGrid temp = new ToneGrid();
+		//I'm not sure how to do this/if this is even the right class for this method
 	}
 	
 	/*toggle(). Switches between true and false
