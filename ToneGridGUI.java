@@ -6,17 +6,17 @@
 
 import javax.swing.JFrame;
 
-public class ToneGridGUI{
+public class ToneGridGUI {
 	
 	public ToneGridGUI(){
-		//heyo probs not necessary
+		//unnecessary
 	}
 	
 	public static void main(String[]args){
 		JFrame frame = new JFrame("Tone Grid");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		ToneGridPanel tgp = new ToneGridPanel();
+		ToneGridPanel tgp = new ToneGridPanel(); //change to ToneGridPanel 
 		frame.add(tgp);
 
 		frame.pack();
