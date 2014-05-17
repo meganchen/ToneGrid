@@ -52,6 +52,8 @@ public class TGPlayer {
 		p.play(s);
 	}
 	
+	/*playGrid() tester method. Plays the entire grid once.
+	*/
 	public void playGrid(){
 		for(int i = ToneGrid.GRID_DIMENSION - 1; i >= 0 ; i--){
 			play(i);
