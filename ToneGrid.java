@@ -111,15 +111,15 @@ public class ToneGrid{
 	
 	/* colTraverse method.
 	*@param column number
-	*@returns string of integers that tell which indexes in the notes LinkedList are true
+	*@returns LinkedList<Integer> of integers that tell which indexes in the notes LinkedList are true
 	*/
-	public String colTraverse(int colNum){
-		String s = "";
+	public LinkedList<Integer> colTraverse(int colNum){
+		LinkedList<Integer> s = new LinkedList<Integer>();
 		//check all elements of the "notes" LinkedList contained within the "beats" LinkedLists's node (nodeNum)
 		for(int i = 0; i < GRID_DIMENSION; i++){
 			//if the value is true, add the value's index in "notes" LinkedList to the string
 			if(beats.get(colNum).get(i))
-				s += i + " ";
+				s.add(i);
 		}
 		return s;
 	}
@@ -201,6 +201,11 @@ public class ToneGrid{
 		tg.load("Tester 2");
 		System.out.println(tg);
 		tg.load("TWiggles");
+		tg.load("Tester 1");
+		TGPlayer player =  new TGPlayer("mode1", tg);
+		player.playGrid();
+		
+		
 		
 	}
 }
