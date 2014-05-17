@@ -15,21 +15,23 @@ import java.util.*;
 public class ToneGridGUI extends JPanel{ //remove "extends JPanel"
 	private ToneGrid tg;
 	private LinkedList<JButton> gridButtons;
+	ImageIcon yellow, gray;
 	
 	public ToneGridGUI(){
 		tg = new ToneGrid();
 		gridButtons = new LinkedList<JButton>();
 		setPreferredSize(new Dimension(370,370));
 		setBackground(Color.BLACK);
+		yellow = new ImageIcon("img/yellow.png");
+		gray = new ImageIcon("img/gray.png");
 		
 		GridLayout tgLayout = new GridLayout(ToneGrid.GRID_DIMENSION,ToneGrid.GRID_DIMENSION,0,0);
 		
 		//adds ToneGrid buttons to pane
 		for(int i = 0; i < Math.pow(ToneGrid.GRID_DIMENSION,2); i++){
-			ImageIcon img = new ImageIcon("img/gray.png");
 			JButton b = new JButton();
 			b.setFocusable(true);
-			b.setIcon(img);
+			b.setIcon(gray);
 			b.setContentAreaFilled(false);
 			b.setBorder(BorderFactory.createEmptyBorder());
 			b.setFocusPainted(false);
@@ -45,15 +47,27 @@ public class ToneGridGUI extends JPanel{ //remove "extends JPanel"
 	private class BoxListener implements ActionListener{
 		
 		public void actionPerformed (ActionEvent event){
-			ImageIcon yellow = new ImageIcon("img/yellow.png");
-			ImageIcon gray = new ImageIcon("img/gray.png");
 			int bIndex = gridButtons.indexOf(event.getSource());
 			int bCol = bIndex % ToneGrid.GRID_DIMENSION;
+
+			//calculates which row the box is in
+			int bRow = 0;
+			while (!(bIndex < (bRow * ToneGrid.GRID_DIMENSION)))
+				bRow++;
+			bRow--; //accounts for off by 1 error
 			
-			System.out.println(bCol);
 			
-			//System.out.println(gridButtons.indexOf(event.getSource()));
-			gridButtons.get(bIndex).setIcon(yellow);
+			System.out.println("Col: " + bCol);
+			System.out.println("Row: " + bRow);
+			
+			tg.toggle(bCol, bRow);
+			
+			//changes color according to boolean value in tg ToneGrid
+			if(tg.getBool(bCol,bRow))
+				gridButtons.get(bIndex).setIcon(yellow);
+			else
+				gridButtons.get(bIndex).setIcon(gray);
+
 		}
 	}
 	

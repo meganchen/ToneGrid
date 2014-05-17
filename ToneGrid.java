@@ -87,8 +87,8 @@ public class ToneGrid{
 	}
 	
 	/*toggle(). Switches between true and false
-	*@param numBeat beat number (index in "beats" LinkedList)
-	*@param numNote note number (index in "notes" LinkedList)
+	*@param numBeat beat number (index in "beats" LinkedList) [col]
+	*@param numNote note number (index in "notes" LinkedList) [row]
 	*/
 	public void toggle(int numBeat, int numNote){
 		//if true, set as false
