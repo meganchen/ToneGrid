@@ -1,5 +1,5 @@
-/*ToneGridPanel.java.
-* This class creates the matrix of buttons in the ToneGridGUI.
+/*GridPanel.java.
+* This class creates the matrix of buttons in the ToneGrid
 	
 	Date Created: May 16, 2014
 	Creator: Megan Chen
@@ -10,13 +10,13 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
-public class ToneGridPanel extends JPanel{
+public class GridPanel extends JPanel{
 	private ToneGrid tg;
 	private LinkedList<JButton> gridButtons;
 	ImageIcon yellow, gray;
 	
-	public ToneGridPanel(){
-		tg = new ToneGrid();
+	public GridPanel(ToneGrid t){
+		tg = t;
 		gridButtons = new LinkedList<JButton>();
 		setPreferredSize(new Dimension(370,370));
 		setBackground(Color.BLACK);
@@ -53,6 +53,7 @@ public class ToneGridPanel extends JPanel{
 			while (!(bIndex < (bRow * ToneGrid.GRID_DIMENSION)))
 				bRow++;
 			bRow--; //accounts for off by 1 error
+			
 			
 			System.out.println("Col: " + bCol);
 			System.out.println("Row: " + bRow);

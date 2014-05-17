@@ -146,6 +146,13 @@ public class ToneGrid{
 			System.out.println("Load Error: " + tgName + " does not exist.");
 	}
 	
+	/*getGrids method. 
+	*@return hashtable containing the saved grids
+	*/	
+	public Hashtable<String, LinkedList<LinkedList<Boolean>>> getGrids(){
+		return grids;
+	}
+	
 	/*main method. Tests code within this class*/
 	public static void main(String[]args){
 		ToneGrid tg = new ToneGrid();

@@ -11,9 +11,10 @@ public class ToneGridGUI {
 	public static void main(String[]args){
 		JFrame frame = new JFrame("Tone Grid");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		//frame.setResizable(false);
 		
-		ToneGridPanel tgp = new ToneGridPanel();
+		ToneGrid tg = new ToneGrid();
+		ToneGridPanel tgp = new ToneGridPanel(tg);
 		frame.add(tgp);
 
 		frame.pack();
