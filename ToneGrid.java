@@ -83,7 +83,17 @@ public class ToneGrid{
 	/*clear(). Resets all values in the ToneGrid to false
 	*/
 	public void clear(){
-		//I'm not sure how to do this/if this is even the right class for this method
+		beats = new LinkedList<LinkedList<Boolean>>();
+		
+		//adds GRID_DIMENSION nodes to the beats LinkedList
+		for(int colCount = 0; beats.size() < GRID_DIMENSION; colCount++){
+			//adds a LinkedList of Booleans at each node of the beats LinkedList
+			beats.add(new LinkedList<Boolean>());
+			LinkedList colList = beats.get(colCount);
+			//populates the LinkedList of Booleans as FALSE
+			while(colList.size() < GRID_DIMENSION)
+				colList.add(false);
+		}
 	}
 	
 	/*toggle(). Switches between true and false
@@ -129,5 +139,7 @@ public class ToneGrid{
 		System.out.println("Toggle Test at (0,0) (Expect \"T\"):\n" + tg);
 		tg.toggle(0,0);
 		System.out.println("Toggle Test at (0,0) (Expect \"F\"):\n" + tg);
+		tg.clear();
+		System.out.println("Clearing ToneGrid: \n" + tg);
 	}
 }
