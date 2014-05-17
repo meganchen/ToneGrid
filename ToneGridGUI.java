@@ -6,12 +6,6 @@
 
 import javax.swing.JFrame;
 
-//remove
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.util.*;
-
 public class ToneGridGUI {
 	
 	public static void main(String[]args){
