@@ -8,7 +8,8 @@ import java.util.*;
 public class ToneGrid{
 	
 	private LinkedList<LinkedList<Boolean>> beats;
-	public static final int GRID_DIMENSION = 16; 
+	private static Hashtable<String, LinkedList<LinkedList<Boolean>>> grids = new Hashtable<String, LinkedList<LinkedList<Boolean>>>();
+	public static final int GRID_DIMENSION = 16;
 	
 	/*ToneGrid constructor. Instantiates a 16x16 ToneGrid and the default value of each node is FALSE.
 	*/
@@ -40,7 +41,7 @@ public class ToneGrid{
 				if(b)
 					s += "T ";
 				else
-					s += "F ";
+					s += "- ";
 			}
 			s += "\n";
 		}
@@ -123,6 +124,19 @@ public class ToneGrid{
 		return s;
 	}
 	
+	/* save method. Save the current state of the ToneGrid to the grids Hashtable
+	*@param tgName the name under which the ToneGrid will be saved.
+	*/
+	public void save(String tgName){
+		grids.put(tgName, beats);
+	}
+	
+	/*load method. Loads a grid that has been saved and sets it as the current grid.
+	*@param tgName the name of the saved ToneGrid
+	*/
+	public void load(String tgName){
+		beats = grids.get(tgName);
+	}
 	/*main method. Tests code within this class*/
 	public static void main(String[]args){
 		ToneGrid tg = new ToneGrid();
@@ -141,5 +155,30 @@ public class ToneGrid{
 		System.out.println("Toggle Test at (0,0) (Expect \"F\"):\n" + tg);
 		tg.clear();
 		System.out.println("Clearing ToneGrid: \n" + tg);
+		for(int i = 0; i < ToneGrid.GRID_DIMENSION; i++){
+			tg.toggle(i,i);
+		}
+		System.out.println("Testing save method\n\"Tester 1\" ToneGrid: \n" + tg);
+		tg.save("Tester 1");
+		tg.clear();
+		System.out.println("Clearing ToneGrid\n" + tg);
+		for(int i = 0; i < ToneGrid.GRID_DIMENSION; i++){
+			tg.toggle(0,i);
+		}
+		System.out.println("\"Tester 2\" ToneGrid: \n" + tg);
+		tg.save("Tester 2");
+		tg.clear();
+		for(int i = 0; i < ToneGrid.GRID_DIMENSION; i++){
+			tg.toggle(i,0);
+		}
+		System.out.println("\"Tester 3\" ToneGrid: \n" + tg);
+		tg.save("Tester 3");
+		tg.load("Tester 1");
+		System.out.println("Loading \"Tester 1\":\n" + tg);
+		tg.load("Tester 2");
+		System.out.println("Loading \"Tester 2\":\n" + tg);
+		tg.load("Tester 3");
+		System.out.println("Loading \"Tester 3\":\n" + tg);
+		
 	}
 }
