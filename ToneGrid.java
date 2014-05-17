@@ -8,7 +8,7 @@ import java.util.*;
 public class ToneGrid{
 	
 	private LinkedList<LinkedList<Boolean>> beats;
-	private final int GRID_DIMENSION = 4; 
+	public static final int GRID_DIMENSION = 16; 
 	
 	/*ToneGrid constructor. Instantiates a 16x16 ToneGrid and the default value of each node is FALSE.
 	*/

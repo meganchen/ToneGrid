@@ -15,12 +15,20 @@ public class ToneGridPanel extends JPanel{
 		ToneGrid tg = new ToneGrid();
 		setPreferredSize(new Dimension(500,500));
 		
-		GridLayout tgLayout = new GridLayout(ToneGrid.GRID_DIMENSION,ToneGrid.GRID_DIMENSION,4,4);
+		GridLayout tgLayout = new GridLayout(ToneGrid.GRID_DIMENSION,ToneGrid.GRID_DIMENSION,0,0);
 		
 		//adds ToneMatrix buttons to pane
 		for(int i = 0; i < Math.pow(ToneGrid.GRID_DIMENSION,2); i++){
 			String s = "" + i;
-			add(new JButton(s));
+			ImageIcon img = new ImageIcon("img/gray.png", s);
+			JButton b = new JButton();
+			b.setFocusable(true);
+			b.setIcon(img);
+			b.setContentAreaFilled(false);
+			//b.setBorder(BorderFactory.createEmptyBorder());
+			b.setFocusPainted(false);
+			b.setPreferredSize(new Dimension(10, 20));
+			add(b);
 		}
 		setLayout(tgLayout);
 		
