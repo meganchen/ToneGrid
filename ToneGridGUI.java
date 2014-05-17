@@ -8,15 +8,13 @@ import javax.swing.JFrame;
 
 public class ToneGridGUI {
 	
-	public ToneGridGUI(){
-		//unnecessary
-	}
-	
 	public static void main(String[]args){
 		JFrame frame = new JFrame("Tone Grid");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setResizable(false);
 		
-		ToneGridPanel tgp = new ToneGridPanel(); //change to ToneGridPanel 
+		ToneGrid tg = new ToneGrid();
+		ToneGridPanel tgp = new ToneGridPanel(tg);
 		frame.add(tgp);
 
 		frame.pack();

@@ -1,7 +1,8 @@
-/*ToneGridPanel.java
-	
-	Date Created: May 16, 2014
-	Creator: Megan Chen
+/*ControlPanel class. 
+Controls the clear, start, pause, select mode, save, and load buttons.
+
+Date Created: May 17, 2014
+Author: Megan Chen
 */
 
 import java.awt.*;
@@ -9,20 +10,18 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class ToneGridPanel extends JPanel{
+	private ToneGrid tg;
 
-	//Constructor
-	public ToneGridPanel(){
-		ToneGrid tg = new ToneGrid();
+	//constructor
+	public ToneGridPanel(ToneGrid t){
+		tg = t;
 		setPreferredSize(new Dimension(500,500));
+		setBackground(Color.BLACK);
 		
-		GridLayout tgLayout = new GridLayout(ToneGrid.GRID_DIMENSION,ToneGrid.GRID_DIMENSION,4,4);
+		GridPanel gp = new GridPanel(tg);
+		ControlPanel cp = new ControlPanel(tg);
 		
-		//adds ToneMatrix buttons to pane
-		for(int i = 0; i < Math.pow(ToneGrid.GRID_DIMENSION,2); i++){
-			String s = "" + i;
-			add(new JButton(s));
-		}
-		setLayout(tgLayout);
-		
+		add(gp);
+		add(cp);
 	}
 }
