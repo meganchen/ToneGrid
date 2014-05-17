@@ -126,17 +126,26 @@ public class ToneGrid{
 	
 	/* save method. Save the current state of the ToneGrid to the grids Hashtable
 	*@param tgName the name under which the ToneGrid will be saved.
+	*Precondition: tgName doesn't already exist. If tgName already exists, program will print a message.
 	*/
 	public void save(String tgName){
-		grids.put(tgName, beats);
+		if(grids.get(tgName) == null)
+			grids.put(tgName, beats);
+		else
+			System.out.println("Save Error: " + tgName + " already exists.");
 	}
 	
 	/*load method. Loads a grid that has been saved and sets it as the current grid.
 	*@param tgName the name of the saved ToneGrid
+	*Precondition: tgName exists. If tgName doesn't exist, program will print a message.
 	*/
 	public void load(String tgName){
-		beats = grids.get(tgName);
+		if(grids.get(tgName) != null)
+			beats = grids.get(tgName);
+		else
+			System.out.println("Load Error: " + tgName + " does not exist.");
 	}
+	
 	/*main method. Tests code within this class*/
 	public static void main(String[]args){
 		ToneGrid tg = new ToneGrid();
@@ -179,6 +188,12 @@ public class ToneGrid{
 		System.out.println("Loading \"Tester 2\":\n" + tg);
 		tg.load("Tester 3");
 		System.out.println("Loading \"Tester 3\":\n" + tg);
+		
+		tg.clear();
+		tg.save("Tester 2");
+		tg.load("Tester 2");
+		System.out.println(tg);
+		tg.load("TWiggles");
 		
 	}
 }
