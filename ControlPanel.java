@@ -68,8 +68,11 @@ public class ControlPanel extends JPanel{
 			}
 			else if(event.getSource() == save){
 				String s = "" + saveTextBox.getText();
-				tg.save(s);	
-				loadBox.addItem(saveTextBox.getText());
+				boolean saved = tg.save(s);	
+				//adds the name of the ToneGrid to the load combo box if grid is saved successfully
+				if(saved){
+					loadBox.addItem(saveTextBox.getText());
+				}
 			}
 			else if(event.getSource() == load) {
 				tg.clear();

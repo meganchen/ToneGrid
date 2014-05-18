@@ -8,7 +8,7 @@ import org.jfugue.*;
 import java.util.*;
 
 public class TGPlayer {
-	private LinkedList<String> scale; //holds the notes for three scales:
+	private static LinkedList<String> scale; //holds the notes for three scales:
 										//mode1 (major pent): CDFGACDFGACDFGAC
 										//mode2 (minor pent): CDEGACDEGACDEGAC
 										//mode3 (idk): CD#FG#A#CD#FG#A#CD#FG#A#C
@@ -19,25 +19,8 @@ public class TGPlayer {
 		scale = new LinkedList<String>();
 		p = new Player();
 		tg = toneGrid;
+		setMode("mode1");
 		
-		if(scaleInput.equals("mode3")){
-			scale.add("C5"); scale.add("D#5"); scale.add("F5"); scale.add("G#5"); 
-			scale.add("A#5"); scale.add("C6"); scale.add("D#6"); scale.add("F6"); 
-			scale.add("G#6"); scale.add("A#6"); scale.add("C7"); scale.add("D#7"); 
-			scale.add("F7"); scale.add("G#7"); scale.add("A#7"); scale.add("C8");
-		}		
-		else if(scaleInput.equals("mode2")){
-			scale.add("C5"); scale.add("D5"); scale.add("E5"); scale.add("G5");
-			scale.add("A5"); scale.add("C6"); scale.add("D6"); scale.add("E6"); 
-			scale.add("G6"); scale.add("A6"); scale.add("C7"); scale.add("D7"); 
-			scale.add("E7"); scale.add("G7"); scale.add("A7"); scale.add("C8");	
-		}
-		else if(scaleInput.equals("mode1")){
-			scale.add("C8"); scale.add("A7"); scale.add("G7"); scale.add("F7");
-			scale.add("D7"); scale.add("C7"); scale.add("A6"); scale.add("G6");  
-			scale.add("F6"); scale.add("D6"); scale.add("C6"); scale.add("A5");  
-			scale.add("G5"); scale.add("F5"); scale.add("D5"); scale.add("C5");
-		}
 		/*if(scaleInput.equals("mode3")){
 			scale.add("C5"); scale.add("D#5"); scale.add("F5"); scale.add("G#5"); 
 			scale.add("A#5"); scale.add("C6"); scale.add("D#6"); scale.add("F6"); 
@@ -79,6 +62,35 @@ public class TGPlayer {
 	public void playGrid(){
 		for(int i = 0; i < ToneGrid.GRID_DIMENSION ; i++){
 			play(i);
+		}
+	}
+	
+	/*setMode() setter. Sets the scale LinkedList<String> instance variable to
+		the specified scale. The options are mode1, mode2, mode3.*/	
+	public static void setMode(String modeInput) {
+		if(modeInput.equals("mode1")){
+			scale.clear();
+			scale.add("C8"); scale.add("A7"); scale.add("G7"); scale.add("F7");
+			scale.add("D7"); scale.add("C7"); scale.add("A6"); scale.add("G6");  
+			scale.add("F6"); scale.add("D6"); scale.add("C6"); scale.add("A5");  
+			scale.add("G5"); scale.add("F5"); scale.add("D5"); scale.add("C5");
+		}
+		else if(modeInput.equals("mode2")){
+			scale.clear();
+			scale.add("C8"); scale.add("A7"); scale.add("G7"); scale.add("E7"); 
+			scale.add("D7"); scale.add("C7"); scale.add("A6"); scale.add("G6"); 
+			scale.add("E6"); scale.add("D6"); scale.add("C6"); scale.add("A5");
+			scale.add("G5"); scale.add("E5"); scale.add("D5"); scale.add("C5"); 	
+		}
+		else if(modeInput.equals("mode3")){
+			scale.clear();
+			scale.add("C8"); scale.add("A#7"); scale.add("G#7"); scale.add("F7"); 
+			scale.add("D#7"); scale.add("C7"); scale.add("A#6"); scale.add("G#6"); 
+			scale.add("F6"); scale.add("D#6"); scale.add("C6");scale.add("A#5");  
+			scale.add("G#5"); scale.add("F5"); scale.add("D#5"); scale.add("C5"); 
+		}		
+		else {
+			System.out.println("Choose mode1, mode2, or mode3.");
 		}
 	}
 	
