@@ -23,6 +23,7 @@ public class ControlPanel extends JPanel{
 
 		clear = new JButton("Clear");
 		clear.setPreferredSize(new Dimension(110, 30));
+		clear.addActionListener(new ButtonListener());
 
 		start = new JButton("Start");
 		start.setPreferredSize(new Dimension(110, 30));
@@ -32,9 +33,11 @@ public class ControlPanel extends JPanel{
 
 		save = new JButton("Save");
 		save.setPreferredSize(new Dimension(110, 30));
-
+		save.addActionListener(new ButtonListener());
+		
 		load = new JButton("Load");
 		load.setPreferredSize(new Dimension(110, 30));
+		load.addActionListener(new ButtonListener());
 
 		selectMode = new JButton("Select mode");
 		selectMode.setPreferredSize(new Dimension(110, 30));
