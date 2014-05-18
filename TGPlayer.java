@@ -12,14 +12,13 @@ public class TGPlayer {
 										//mode1 (major pent): CDFGACDFGACDFGAC
 										//mode2 (minor pent): CDEGACDEGACDEGAC
 										//mode3 (idk): CD#FG#A#CD#FG#A#CD#FG#A#C
-	private ToneGrid tg;
 	private Player p;
-	private boolean play;
+	private ToneGrid tg;
 
-	public TGPlayer(String scaleInput, ToneGrid tg) {
+	public TGPlayer(String scaleInput, ToneGrid toneGrid) {
 		scale = new LinkedList<String>();
 		p = new Player();
-		play = false;
+		tg = toneGrid;
 		
 		if(scaleInput.equals("mode3")){
 			scale.add("C5"); scale.add("D#5"); scale.add("F5"); scale.add("G#5"); 
@@ -57,7 +56,6 @@ public class TGPlayer {
 			scale.add("G6"); scale.add("A6"); scale.add("C7"); scale.add("D7"); 
 			scale.add("F7"); scale.add("G7"); scale.add("A7"); scale.add("C8"); 
 		}*/
-		this.tg = tg;
 	}
 
 	//creates a player to play the whole column of notes, specified by the vertical booleans in LinkedList
@@ -73,7 +71,8 @@ public class TGPlayer {
 		p.play(s);
 	}
 	
-	/*playGrid() tester method. Plays the entire grid once.
+	/*playGrid() tester method. Plays the entire grid once. 
+	* NOTE: not used in implementation of ToneGrid
 	*/
 	public void playGrid(){
 		for(int i = 0; i < ToneGrid.GRID_DIMENSION ; i++){
@@ -84,16 +83,9 @@ public class TGPlayer {
 	/*loop method. Plays through the grid in a loop.
 	*/		
 	public void loop(){
-		play = true;
-		int i = 0;
-		while(play){
-			i++;
-			for(int j = 0; j > -1; j++){
-				j %= tg.GRID_DIMENSION;
-				play(j);
-			}
-			if(i == 3)
-				play = false;
+		for(int i = 0; i < tg.GRID_DIMENSION; i++){
+			if(!p.isPlaying())
+				play(i);
 		}
 	}
 

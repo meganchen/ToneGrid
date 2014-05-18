@@ -12,7 +12,6 @@ import java.util.*;
 
 public class ControlPanel extends JPanel{
 	private ToneGrid tg;
-	//private Hashtable<String, LinkedList<LinkedList<Boolean>>> hash;
 	private JButton clear, start, pause, save, load, selectMode;
 	private JTextField saveTextBox;
 	private JComboBox loadBox, modeBox;
