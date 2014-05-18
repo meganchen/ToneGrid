@@ -18,7 +18,7 @@ public class TGPlayer {
 	public TGPlayer(String scaleInput, ToneGrid toneGrid) {
 		scale = new LinkedList<String>();
 		p = new Player();
-		tg = new ToneGrid();
+		tg = toneGrid;
 		
 		if(scaleInput.equals("mode3")){
 			scale.add("C5"); scale.add("D#5"); scale.add("F5"); scale.add("G#5"); 
@@ -56,7 +56,6 @@ public class TGPlayer {
 			scale.add("G6"); scale.add("A6"); scale.add("C7"); scale.add("D7"); 
 			scale.add("F7"); scale.add("G7"); scale.add("A7"); scale.add("C8"); 
 		}*/
-		this.tg = tg;
 	}
 
 	//creates a player to play the whole column of notes, specified by the vertical booleans in LinkedList
