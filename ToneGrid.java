@@ -218,8 +218,8 @@ public class ToneGrid{
 		tg.toggle(12,15);
 		TGPlayer player =  new TGPlayer("mode1", tg);
 		System.out.println(tg);
-		player.playGrid();
-		//player.loop();
+		//player.playGrid();
+		player.loop();
 		
 		
 		

@@ -60,6 +60,7 @@ public class TGPlayer {
 
 	//creates a player to play the whole column of notes, specified by the vertical booleans in LinkedList
 	public void play(int column) {
+		p = new Player();
 		String s = "I[Xylophone] ";
 		LinkedList<Integer> notes = tg.colTraverse(column);
 		for(int i = 0; i < notes.size(); i++){
@@ -69,6 +70,7 @@ public class TGPlayer {
 		}
 		System.out.println(s);
 		p.play(s);
+		p.close();
 	}
 	
 	/*playGrid() tester method. Plays the entire grid once. 
@@ -83,10 +85,66 @@ public class TGPlayer {
 	/*loop method. Plays through the grid in a loop.
 	*/		
 	public void loop(){
-		for(int i = 0; i < tg.GRID_DIMENSION; i++){
-			if(!p.isPlaying())
-				play(i);
+		int i = 0;
+		while(true){
+			play(i % ToneGrid.GRID_DIMENSION);
+			i++;
 		}
 	}
+	
+	public static void main(String[]args){
+		ToneGrid tg = new ToneGrid();
+		TGPlayer tgp = new TGPlayer("mode1", tg);
+		for(int i = 0; i < ToneGrid.GRID_DIMENSION; i++){
+			tg.toggle(i,i);
+			tg.toggle(i, (i + 2) % ToneGrid.GRID_DIMENSION);
+			tg.toggle(i, (i + 3) % ToneGrid.GRID_DIMENSION);
+			tg.toggle(i, (i + 12) % ToneGrid.GRID_DIMENSION);
+			tg.toggle(i, (i + 13) % ToneGrid.GRID_DIMENSION);
+		}
+		System.out.println(tg);
+		//tgp.playGrid();
+		tgp.loop();
+		/*tgp.play(1);
+		tgp.play(2);
+		tgp.play(1);
+		tgp.play(2);
 
+		tgp.play(5);
+		tgp.play(6);
+		tgp.play(5);
+		tgp.play(6);
+		
+		tgp.play(1);
+		tgp.play(2);
+		tgp.play(1);
+		tgp.play(2);
+		
+		tgp.play(5);
+		tgp.play(6);
+		tgp.play(5);
+		tgp.play(6);
+		
+		tgp.play(1);
+		tgp.play(2);
+		tgp.play(1);
+		tgp.play(2);
+
+		tgp.play(5);
+		tgp.play(6);
+		tgp.play(5);
+		tgp.play(6);
+		
+		tgp.play(1);
+		tgp.play(2);
+		tgp.play(1);
+		tgp.play(2);
+		
+		tgp.play(5);
+		tgp.play(6);
+		tgp.play(5);
+		tgp.play(6);
+		*/
+		
+	}
 }
