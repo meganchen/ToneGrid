@@ -14,11 +14,32 @@ public class TGPlayer {
 										//mode3 (idk): CD#FG#A#CD#FG#A#CD#FG#A#C
 	private ToneGrid tg;
 	private Player p;
+	private boolean play;
 
 	public TGPlayer(String scaleInput, ToneGrid tg) {
 		scale = new LinkedList<String>();
 		p = new Player();
+		play = false;
+		
 		if(scaleInput.equals("mode3")){
+			scale.add("C5"); scale.add("D#5"); scale.add("F5"); scale.add("G#5"); 
+			scale.add("A#5"); scale.add("C6"); scale.add("D#6"); scale.add("F6"); 
+			scale.add("G#6"); scale.add("A#6"); scale.add("C7"); scale.add("D#7"); 
+			scale.add("F7"); scale.add("G#7"); scale.add("A#7"); scale.add("C8");
+		}		
+		else if(scaleInput.equals("mode2")){
+			scale.add("C5"); scale.add("D5"); scale.add("E5"); scale.add("G5");
+			scale.add("A5"); scale.add("C6"); scale.add("D6"); scale.add("E6"); 
+			scale.add("G6"); scale.add("A6"); scale.add("C7"); scale.add("D7"); 
+			scale.add("E7"); scale.add("G7"); scale.add("A7"); scale.add("C8");	
+		}
+		else if(scaleInput.equals("mode1")){
+			scale.add("C8"); scale.add("A7"); scale.add("G7"); scale.add("F7");
+			scale.add("D7"); scale.add("C7"); scale.add("A6"); scale.add("G6");  
+			scale.add("F6"); scale.add("D6"); scale.add("C6"); scale.add("A5");  
+			scale.add("G5"); scale.add("F5"); scale.add("D5"); scale.add("C5");
+		}
+		/*if(scaleInput.equals("mode3")){
 			scale.add("C5"); scale.add("D#5"); scale.add("F5"); scale.add("G#5"); 
 			scale.add("A#5"); scale.add("C6"); scale.add("D#6"); scale.add("F6"); 
 			scale.add("G#6"); scale.add("A#6"); scale.add("C7"); scale.add("D#7"); 
@@ -35,7 +56,7 @@ public class TGPlayer {
 			scale.add("A5"); scale.add("C6"); scale.add("D6"); scale.add("F6"); 
 			scale.add("G6"); scale.add("A6"); scale.add("C7"); scale.add("D7"); 
 			scale.add("F7"); scale.add("G7"); scale.add("A7"); scale.add("C8"); 
-		}
+		}*/
 		this.tg = tg;
 	}
 
@@ -55,8 +76,24 @@ public class TGPlayer {
 	/*playGrid() tester method. Plays the entire grid once.
 	*/
 	public void playGrid(){
-		for(int i = ToneGrid.GRID_DIMENSION - 1; i >= 0 ; i--){
+		for(int i = 0; i < ToneGrid.GRID_DIMENSION ; i++){
 			play(i);
+		}
+	}
+	
+	/*loop method. Plays through the grid in a loop.
+	*/		
+	public void loop(){
+		play = true;
+		int i = 0;
+		while(play){
+			i++;
+			for(int j = 0; j > -1; j++){
+				j %= tg.GRID_DIMENSION;
+				play(j);
+			}
+			if(i == 3)
+				play = false;
 		}
 	}
 

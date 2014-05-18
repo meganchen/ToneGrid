@@ -8,13 +8,14 @@ import java.util.*;
 public class ToneGrid{
 	
 	private LinkedList<LinkedList<Boolean>> beats;
-	private static Hashtable<String, LinkedList<LinkedList<Boolean>>> grids = new Hashtable<String, LinkedList<LinkedList<Boolean>>>();
+	private static Hashtable<String, LinkedList<LinkedList<Boolean>>> grids;
 	public static final int GRID_DIMENSION = 16;
 	
 	/*ToneGrid constructor. Instantiates a 16x16 ToneGrid and the default value of each node is FALSE.
 	*/
 	public ToneGrid(){
 		beats = new LinkedList<LinkedList<Boolean>>();
+		grids = new Hashtable<String, LinkedList<LinkedList<Boolean>>>();
 		
 		//adds GRID_DIMENSION nodes to the beats LinkedList
 		for(int colCount = 0; beats.size() < GRID_DIMENSION; colCount++){
@@ -202,8 +203,23 @@ public class ToneGrid{
 		System.out.println(tg);
 		tg.load("TWiggles");
 		tg.load("Tester 1");
+		tg.toggle(0,3);
+		tg.toggle(1,4);
+		tg.toggle(2,5);
+		tg.toggle(3,6);
+		tg.toggle(4,7);
+		tg.toggle(5,8);
+		tg.toggle(6,9);
+		tg.toggle(7,10);
+		tg.toggle(8,11);
+		tg.toggle(9,12);
+		tg.toggle(10,13);
+		tg.toggle(11,14);
+		tg.toggle(12,15);
 		TGPlayer player =  new TGPlayer("mode1", tg);
+		System.out.println(tg);
 		player.playGrid();
+		//player.loop();
 		
 		
 		

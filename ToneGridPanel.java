@@ -24,4 +24,5 @@ public class ToneGridPanel extends JPanel{
 		add(gp);
 		add(cp);
 	}
+	
 }
