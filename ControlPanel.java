@@ -68,9 +68,10 @@ public class ControlPanel extends JPanel{
 			else if(event.getSource() == save){
 				String s = "" + saveTextBox.getText();
 				tg.save(s);
+				loadBox.addItem(saveTextBox.getText());
 			}
 			else if(event.getSource() == load) {
-				tg.load("wut");
+				tg.load((String)loadBox.getSelectedItem());
 			}
 		}	
 	}
