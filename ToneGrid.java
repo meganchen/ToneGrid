@@ -8,7 +8,7 @@ import java.util.*;
 public class ToneGrid{
 	
 	private LinkedList<LinkedList<Boolean>> beats;
-	private static Hashtable<String, LinkedList<LinkedList<Boolean>>> grids;
+	private Hashtable<String, LinkedList<LinkedList<Boolean>>> grids;
 	public static final int GRID_DIMENSION = 16;
 	
 	/*ToneGrid constructor. Instantiates a 16x16 ToneGrid and the default value of each node is FALSE.
@@ -129,11 +129,14 @@ public class ToneGrid{
 	*@param tgName the name under which the ToneGrid will be saved.
 	*Precondition: tgName doesn't already exist. If tgName already exists, program will print a message.
 	*/
-	public void save(String tgName){
-		if(grids.get(tgName) == null)
+	public Boolean save(String tgName){
+		if(grids.get(tgName) == null){
 			grids.put(tgName, beats);
+			return true;
+		}
 		else
 			System.out.println("Save Error: " + tgName + " already exists.");
+		return false;
 	}
 	
 	/*load method. Loads a grid that has been saved and sets it as the current grid.
