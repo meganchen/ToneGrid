@@ -75,7 +75,7 @@ public class GridPanel extends JPanel{
 	public void setBoxes(){
 		for(int i = 0; i < tg.GRID_DIMENSION; i++){
 			for(int j = 0; j < tg.GRID_DIMENSION; j++){
-				if(tg.getBool(i,j))
+				if(tg.getBool(j,i))
 					gridButtons.get((i*tg.GRID_DIMENSION)+j).setIcon(yellow);
 				else
 					gridButtons.get((i*tg.GRID_DIMENSION)+j).setIcon(gray);

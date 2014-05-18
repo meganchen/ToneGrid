@@ -68,14 +68,17 @@ public class ControlPanel extends JPanel{
 			}
 			else if(event.getSource() == save){
 				String s = "" + saveTextBox.getText();
-				tg.save(s);
+				tg.save(s);	
 				loadBox.addItem(saveTextBox.getText());
 			}
 			else if(event.getSource() == load) {
 				tg.clear();
-				ToneGridPanel.setBoxes();
 				tg.load((String)loadBox.getSelectedItem());
 				ToneGridPanel.setBoxes();
+			}
+			else if(event.getSource() == selectMode) {
+				tg.clear();
+				//tg.setMode(); //write this in ToneGrid.java
 			}
 		}	
 	}
