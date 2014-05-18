@@ -48,7 +48,7 @@ public class ControlPanel extends JPanel{
 		setPreferredSize(new Dimension(365,120));
 		setBackground(Color.GRAY);
 
-		String[] loads = {"Test1", "Test2"}; //dummy tester
+		String[] loads = {"Demo"}; //dummy tester
 		loadBox = new JComboBox(loads);
 		loadBox.setPreferredSize(new Dimension(110, 30));
 
@@ -64,7 +64,8 @@ public class ControlPanel extends JPanel{
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed (ActionEvent event){
 			if(event.getSource() == clear) {
-				ToneGridPanel.clear();
+				tg.clear();
+				ToneGridPanel.setBoxes();
 			}
 			else if(event.getSource() == save){
 				String s = "" + saveTextBox.getText();
@@ -72,7 +73,10 @@ public class ControlPanel extends JPanel{
 				loadBox.addItem(saveTextBox.getText());
 			}
 			else if(event.getSource() == load) {
+				tg.clear();
+				ToneGridPanel.setBoxes();
 				tg.load((String)loadBox.getSelectedItem());
+				ToneGridPanel.setBoxes();
 			}
 		}	
 	}

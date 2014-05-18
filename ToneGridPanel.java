@@ -27,8 +27,7 @@ public class ToneGridPanel extends JPanel{
 	}
 	
 	//clears the ToneGrid
-	public static void clear(){
-		tg.clear();
+	public static void setBoxes(){
 		gp.setBoxes();
 	}
 	
