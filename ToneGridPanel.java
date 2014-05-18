@@ -10,7 +10,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class ToneGridPanel extends JPanel{
-	private ToneGrid tg;
+	private static ToneGrid tg;
+	private static GridPanel gp;
 
 	//constructor
 	public ToneGridPanel(ToneGrid t){
@@ -18,11 +19,17 @@ public class ToneGridPanel extends JPanel{
 		setPreferredSize(new Dimension(500,500));
 		setBackground(Color.BLACK);
 		
-		GridPanel gp = new GridPanel(tg);
+		gp = new GridPanel(tg);
 		ControlPanel cp = new ControlPanel(tg);
 		
 		add(gp);
 		add(cp);
+	}
+	
+	//clears the ToneGrid
+	public static void clear(){
+		tg.clear();
+		gp.setBoxes();
 	}
 	
 }

@@ -13,20 +13,19 @@ import java.util.*;
 public class GridPanel extends JPanel{
 	private ToneGrid tg;
 	private LinkedList<JButton> gridButtons;
-	ImageIcon yellow, gray;
+	private ImageIcon yellow, gray;
 	
 	public GridPanel(ToneGrid t){
 		tg = t;
 		gridButtons = new LinkedList<JButton>();
-		setPreferredSize(new Dimension(370,370));
-		setBackground(Color.BLACK);
 		yellow = new ImageIcon("img/yellow.png");
 		gray = new ImageIcon("img/gray.png");
+		setPreferredSize(new Dimension(370,370));
+		setBackground(Color.BLACK);
 		
 		GridLayout tgLayout = new GridLayout(ToneGrid.GRID_DIMENSION,ToneGrid.GRID_DIMENSION,0,0);
 		
 		//adds ToneGrid buttons to pane
-		//gridButtons = newGrid(gridButtons); //using method
 		for(int i = 0; i < Math.pow(ToneGrid.GRID_DIMENSION,2); i++){
 			JButton b = new JButton();
 			b.setFocusable(true);
@@ -41,30 +40,14 @@ public class GridPanel extends JPanel{
 		}
 		setLayout(tgLayout);
 	}
-
-	/*public LinkedList<JButton> newGrid(LinkedList<JButton> grid) {
-		grid = new LinkedList<JButton>();
-
-		for(int i = 0; i < Math.pow(ToneGrid.GRID_DIMENSION,2); i++){
-			JButton b = new JButton();
-			b.setFocusable(true);
-			b.setIcon(gray);
-			b.setContentAreaFilled(false);
-			b.setBorder(BorderFactory.createEmptyBorder());
-			b.setFocusPainted(false);
-			b.setPreferredSize(new Dimension(10, 20));
-			b.addActionListener(new BoxListener());
-			grid.add(b);
-			add(b);
-		}
-		return grid;
-	}*/
 	
 	//changes button colors when box is clicked
 	private class BoxListener implements ActionListener{
 		
 		public void actionPerformed (ActionEvent event){
 			int bIndex = gridButtons.indexOf(event.getSource());
+			
+			//calculates the column the box is in
 			int bCol = bIndex % ToneGrid.GRID_DIMENSION;
 
 			//calculates which row the box is in
@@ -85,5 +68,19 @@ public class GridPanel extends JPanel{
 			else
 				gridButtons.get(bIndex).setIcon(gray);
 		}
+	}
+	
+	/*setBoxes method. Sets the boxes by color according to the tone grid
+	*/
+	public void setBoxes(){
+		for(int i = 0; i < tg.GRID_DIMENSION; i++){
+			for(int j = 0; j < tg.GRID_DIMENSION; j++){
+				if(tg.getBool(i,j))
+					gridButtons.get((i*tg.GRID_DIMENSION)+j).setIcon(yellow);
+				else
+					gridButtons.get((i*tg.GRID_DIMENSION)+j).setIcon(gray);
+			}
+		}
+		
 	}
 }

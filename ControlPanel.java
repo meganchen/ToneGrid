@@ -34,7 +34,7 @@ public class ControlPanel extends JPanel{
 		save = new JButton("Save");
 		save.setPreferredSize(new Dimension(110, 30));
 		save.addActionListener(new ButtonListener());
-		
+
 		load = new JButton("Load");
 		load.setPreferredSize(new Dimension(110, 30));
 		load.addActionListener(new ButtonListener());
@@ -64,7 +64,7 @@ public class ControlPanel extends JPanel{
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed (ActionEvent event){
 			if(event.getSource() == clear) {
-				tg.clear();
+				ToneGridPanel.clear();
 			}
 			else if(event.getSource() == save){
 				String s = "" + saveTextBox.getText();
