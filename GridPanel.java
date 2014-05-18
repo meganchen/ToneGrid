@@ -26,6 +26,7 @@ public class GridPanel extends JPanel{
 		GridLayout tgLayout = new GridLayout(ToneGrid.GRID_DIMENSION,ToneGrid.GRID_DIMENSION,0,0);
 		
 		//adds ToneGrid buttons to pane
+		//gridButtons = newGrid(gridButtons); //using method
 		for(int i = 0; i < Math.pow(ToneGrid.GRID_DIMENSION,2); i++){
 			JButton b = new JButton();
 			b.setFocusable(true);
@@ -40,6 +41,24 @@ public class GridPanel extends JPanel{
 		}
 		setLayout(tgLayout);
 	}
+
+	/*public LinkedList<JButton> newGrid(LinkedList<JButton> grid) {
+		grid = new LinkedList<JButton>();
+
+		for(int i = 0; i < Math.pow(ToneGrid.GRID_DIMENSION,2); i++){
+			JButton b = new JButton();
+			b.setFocusable(true);
+			b.setIcon(gray);
+			b.setContentAreaFilled(false);
+			b.setBorder(BorderFactory.createEmptyBorder());
+			b.setFocusPainted(false);
+			b.setPreferredSize(new Dimension(10, 20));
+			b.addActionListener(new BoxListener());
+			grid.add(b);
+			add(b);
+		}
+		return grid;
+	}*/
 	
 	//changes button colors when box is clicked
 	private class BoxListener implements ActionListener{
