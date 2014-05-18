@@ -70,7 +70,7 @@ public class GridPanel extends JPanel{
 		}
 	}
 	
-	/*setBoxes method. Sets the boxes by color according to the tone grid
+	/*setBoxes method. Sets the boxes by color according to the current state of the tone grid
 	*/
 	public void setBoxes(){
 		for(int i = 0; i < tg.GRID_DIMENSION; i++){
