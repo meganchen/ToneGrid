@@ -147,6 +147,10 @@ public class ToneGrid{
 			System.out.println("Load Error: " + tgName + " does not exist.");
 	}
 	
+	public void setMode(String modeInput) {
+		TGPlayer.setMode(modeInput);
+	}
+	
 	/*getGrids method. 
 	*@return hashtable containing the saved grids
 	*/	
