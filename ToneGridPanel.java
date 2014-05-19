@@ -16,16 +16,23 @@ public class ToneGridPanel extends JPanel{
 
 	//constructor
 	public ToneGridPanel(ToneGrid t, TGPlayer player){
-		tg = t;
-		tgp = player;
-		setPreferredSize(new Dimension(500,500));
+		setPreferredSize(new Dimension(600,600));
 		setBackground(Color.BLACK);
 		
-		gp = new GridPanel(tg);
-		ControlPanel cp = new ControlPanel(tg, tgp);
+		tg = t;
+		tgp = player;
+		gp = new GridPanel(tg, tgp);
 		
+		ControlPanel cp = new ControlPanel(tg, tgp);
+		TitlePanel title = new TitlePanel();
+		MessagePanel msg = new MessagePanel();
+		FooterPanel fp = new FooterPanel();
+		
+		add(title);
 		add(gp);
+		add(msg);
 		add(cp);
+		add(fp);
 	}
 	
 	//clears the ToneGrid

@@ -12,19 +12,24 @@ import java.util.*;
 
 public class GridPanel extends JPanel{
 	private ToneGrid tg;
-	private LinkedList<JButton> gridButtons;
-	private ImageIcon yellow, gray;
+	private TGPlayer tgp;
+	private static LinkedList<JButton> gridButtons;
+	private ImageIcon gray;
+	private static ImageIcon yellow, blue;
 	
-	public GridPanel(ToneGrid t){
-		tg = t;
-		gridButtons = new LinkedList<JButton>();
-		yellow = new ImageIcon("img/yellow.png");
-		gray = new ImageIcon("img/gray.png");
+	public GridPanel(ToneGrid t, TGPlayer player){
 		setPreferredSize(new Dimension(370,370));
 		setBackground(Color.BLACK);
 		
-		GridLayout tgLayout = new GridLayout(ToneGrid.GRID_DIMENSION,ToneGrid.GRID_DIMENSION,0,0);
+		tg = t;
+		tgp = player;
+		gridButtons = new LinkedList<JButton>();
+		yellow = new ImageIcon("img/yellow.png");
+		gray = new ImageIcon("img/gray.png");
+		blue = new ImageIcon("img/blue.png");
 		
+		//creates a 16x16 panel of boxes
+		GridLayout tgLayout = new GridLayout(ToneGrid.GRID_DIMENSION,ToneGrid.GRID_DIMENSION,0,0);
 		//adds ToneGrid buttons to pane
 		for(int i = 0; i < Math.pow(ToneGrid.GRID_DIMENSION,2); i++){
 			JButton b = new JButton();
@@ -56,20 +61,34 @@ public class GridPanel extends JPanel{
 				bRow++;
 			bRow--; //accounts for off by 1 error
 			
-			
 			System.out.println("Col: " + bCol);
 			System.out.println("Row: " + bRow);
 			
 			tg.toggle(bCol, bRow);
 			
 			//changes color according to boolean value in tg ToneGrid
-			if(tg.getBool(bCol,bRow))
+			if(tg.getBool(bCol,bRow)) 
 				gridButtons.get(bIndex).setIcon(yellow);
-			else
+			else 
 				gridButtons.get(bIndex).setIcon(gray);
 		}
 	}
 	
+	/*Changes all the yellow boxes in the column to blue if the column is currently playing*/
+	public static void setBlue(int column, LinkedList<Integer> notes) {
+		for (int i = 0; i < notes.size(); i++) {
+			int row = notes.get(i);
+			gridButtons.get((row * ToneGrid.GRID_DIMENSION) + column).setIcon(blue);
+		}
+	}
+
+	public static void setYellow(int column, LinkedList<Integer> notes) {
+		for (int i = 0; i < notes.size(); i++) {
+			int row = notes.get(i);
+			gridButtons.get((row * ToneGrid.GRID_DIMENSION) + column).setIcon(yellow);
+		}
+	}
+
 	/*setBoxes method. Sets the boxes by color according to the current state of the tone grid
 	*/
 	public void setBoxes(){
@@ -81,6 +100,5 @@ public class GridPanel extends JPanel{
 					gridButtons.get((i*tg.GRID_DIMENSION)+j).setIcon(gray);
 			}
 		}
-		
 	}
 }

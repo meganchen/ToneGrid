@@ -14,31 +14,13 @@ public class TGPlayer {
 										//mode3 (idk): CD#FG#A#CD#FG#A#CD#FG#A#C
 	private Player p;
 	private ToneGrid tg;
+	//private int columnPlaying;
 
 	public TGPlayer(String scaleInput, ToneGrid toneGrid) {
 		scale = new LinkedList<String>();
 		p = new Player();
 		tg = toneGrid;
 		setMode("Mode 1");
-		
-		/*if(scaleInput.equals("mode3")){
-			scale.add("C5"); scale.add("D#5"); scale.add("F5"); scale.add("G#5"); 
-			scale.add("A#5"); scale.add("C6"); scale.add("D#6"); scale.add("F6"); 
-			scale.add("G#6"); scale.add("A#6"); scale.add("C7"); scale.add("D#7"); 
-			scale.add("F7"); scale.add("G#7"); scale.add("A#7"); scale.add("C8");
-		}		
-		else if(scaleInput.equals("mode2")){
-			scale.add("C5"); scale.add("D5"); scale.add("E5"); scale.add("G5");
-			scale.add("A5"); scale.add("C6"); scale.add("D6"); scale.add("E6"); 
-			scale.add("G6"); scale.add("A6"); scale.add("C7"); scale.add("D7"); 
-			scale.add("E7"); scale.add("G7"); scale.add("A7"); scale.add("C8");	
-		}
-		else if(scaleInput.equals("mode1")){
-			scale.add("C5"); scale.add("D5"); scale.add("F5"); scale.add("G5"); 
-			scale.add("A5"); scale.add("C6"); scale.add("D6"); scale.add("F6"); 
-			scale.add("G6"); scale.add("A6"); scale.add("C7"); scale.add("D7"); 
-			scale.add("F7"); scale.add("G7"); scale.add("A7"); scale.add("C8"); 
-		}*/
 	}
 	
 	/*playGrid() tester method. Plays the entire grid once. 
@@ -60,20 +42,21 @@ public class TGPlayer {
 			scale.add("F6"); scale.add("D6"); scale.add("C6"); scale.add("A5");  
 			scale.add("G5"); scale.add("F5"); scale.add("D5"); scale.add("C5");
 		}
-		else if(modeInput.equals("Mode 2")){
+		/*old mode 2
+			else if(modeInput.equals("Mode 2")){
 			scale.add("C8"); scale.add("A7"); scale.add("G7"); scale.add("E7"); 
 			scale.add("D7"); scale.add("C7"); scale.add("A6"); scale.add("G6"); 
 			scale.add("E6"); scale.add("D6"); scale.add("C6"); scale.add("A5");
 			scale.add("G5"); scale.add("E5"); scale.add("D5"); scale.add("C5"); 	
-		}
-		else if(modeInput.equals("Mode 3")){
+		}*/
+		else if(modeInput.equals("Mode 2")){
 			scale.add("C8"); scale.add("A#7"); scale.add("G#7"); scale.add("F7"); 
 			scale.add("D#7"); scale.add("C7"); scale.add("A#6"); scale.add("G#6"); 
 			scale.add("F6"); scale.add("D#6"); scale.add("C6"); scale.add("A#5");  
 			scale.add("G#5"); scale.add("F5"); scale.add("D#5"); scale.add("C5"); 
 		}		
 		else{
-			System.out.println("Choose Mode 1, Mode 2, or Mode 3.");
+			System.out.println("Select Mode 1 or Mode 2.");
 		}
 	}
 	
@@ -84,6 +67,7 @@ public class TGPlayer {
 		p = new Player();
 		String s = "I[Xylophone] ";
 		LinkedList<Integer> notes = tg.colTraverse(column);
+		GridPanel.setBlue(column, notes);
 		System.out.println("notes: " + notes);
 		System.out.println("empty: " + notes.isEmpty());
 		if (notes.isEmpty()){
@@ -99,6 +83,7 @@ public class TGPlayer {
 		System.out.println(s  + "\n-----");
 		p.play(s);
 		p.close();
+		GridPanel.setYellow(column, notes);
 	}
 	
 	/*loop method. Plays through the grid in a loop.
@@ -111,6 +96,11 @@ public class TGPlayer {
 			i++;
 		}
 	}
+
+	/*Returns whether or not a column is currently playing*/
+	/*public boolean isPlaying(int column) {
+		return (column == columnPlaying);
+	}*/
 	
 	public static void main(String[]args){
 		ToneGrid tg = new ToneGrid();
