@@ -90,19 +90,13 @@ public class ControlPanel extends JPanel{
 
 			}
 			else if(event.getSource() == start){
-<<<<<<< HEAD
 				tgp.loop();
 				/*tgp.setLoop(true);
-=======
->>>>>>> FETCH_HEAD
 				Thread t = new Thread(new Runnable() {public void run() {tgp.loop();}});
 				t.start();*/
 			}
 			else if(event.getSource() == pause) {
-<<<<<<< HEAD
 				/*tgp.setLoop(false);*/
-=======
->>>>>>> FETCH_HEAD
 			}
 		}	
 	}
