@@ -47,14 +47,18 @@ public class TGPlayer {
 		String s = "I[Xylophone] ";
 		LinkedList<Integer> notes = tg.colTraverse(column);
 		System.out.println("notes: " + notes);
-		for(int i = 0; i < notes.size(); i++){
-			s += scale.get(notes.get(i)) + "s";
-			if(i+1 < notes.size())
-				s += "+";
-		}
-		if (notes.isEmpty())//notes.size() == 0
+		System.out.println("empty: " + notes.isEmpty());
+		if (notes.isEmpty()){
 			s = "Rs";
-		System.out.println(s);
+		}
+		else{
+			for(int i = 0; i < notes.size(); i++){
+					s += scale.get(notes.get(i)) + "s";
+					if(i+1 < notes.size())
+						s += "+";
+			}
+		}
+		System.out.println(s  + "\n-----");
 		p.play(s);
 		p.close();
 	}
