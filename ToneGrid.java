@@ -122,7 +122,6 @@ public class ToneGrid{
 			if(beats.get(colNum).get(i))
 				s.add(i);
 		}
-		System.out.println(s);
 		return s;
 	}
 	
