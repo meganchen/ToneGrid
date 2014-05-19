@@ -14,11 +14,7 @@ public class TGPlayer {
 										//mode3 (idk): CD#FG#A#CD#FG#A#CD#FG#A#C
 	private Player p;
 	private ToneGrid tg;
-<<<<<<< HEAD
 	//private int columnPlaying;
-=======
-	private Boolean loopBool;
->>>>>>> FETCH_HEAD
 
 	public TGPlayer(String scaleInput, ToneGrid toneGrid) {
 		scale = new LinkedList<String>();
@@ -92,23 +88,13 @@ public class TGPlayer {
 	
 	/*loop method. Plays through the grid in a loop.
 	*/		
-	public Void loop(){
-		Void v = null;
+	public void loop(){
 		int i = 0;
-<<<<<<< HEAD
-		while(loopBool){
-=======
 		while(true){
 			System.out.println("Note #" + i);
->>>>>>> FETCH_HEAD
 			play(i % ToneGrid.GRID_DIMENSION);
 			i++;
 		}
-		return v;
-	}
-
-	public void setLoop(Boolean b) {
-		loopBool = b;
 	}
 
 	/*Returns whether or not a column is currently playing*/
