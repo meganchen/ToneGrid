@@ -40,27 +40,6 @@ public class TGPlayer {
 			scale.add("F7"); scale.add("G7"); scale.add("A7"); scale.add("C8"); 
 		}*/
 	}
-<<<<<<< HEAD
-=======
-
-	//creates a player to play the whole column of notes, specified by the vertical booleans in LinkedList
-	public void play(int column) {
-		p = new Player();
-		String s = "I[Xylophone] ";
-		LinkedList<Integer> notes = tg.colTraverse(column);
-		System.out.println("notes: " + notes);
-		for(int i = 0; i < notes.size(); i++){
-			s += scale.get(notes.get(i)) + "s";
-			if(i+1 < notes.size())
-				s += "+";
-		}
-		if (notes.isEmpty())//notes.size() == 0
-			s = "Rs";
-		System.out.println(s);
-		p.play(s);
-		p.close();
-	}
->>>>>>> parent of f6481ab... tgplayer play method update
 	
 	/*playGrid() tester method. Plays the entire grid once. 
 	* NOTE: not used in implementation of ToneGrid
