@@ -16,11 +16,15 @@ public class ControlPanel extends JPanel{
 	private JButton clear, start, pause, save, load, selectMode;
 	private JTextField saveTextBox;
 	private JComboBox loadBox, modeBox;
+	private Thread thread;
 	
 	//constructor
 	public ControlPanel(ToneGrid t, TGPlayer player){
 		tg = t;
 		tgp = player;
+		thread = new Thread(new Runnable(){ 
+			public void run(){
+				tgp.loop(); }});
 
 		ButtonListener blistener = new ButtonListener();
 
@@ -90,12 +94,15 @@ public class ControlPanel extends JPanel{
 
 			}
 			else if(event.getSource() == start){
-				tgp.loop();
+				//thread starts playing the ToneGrid
+				thread.start();
+				//tgp.loop();
 				/*tgp.setLoop(true);
 				Thread t = new Thread(new Runnable() {public void run() {tgp.loop();}});
 				t.start();*/
 			}
-			else if(event.getSource() == pause) {
+			else if(event.getSource() == pause){
+				thread.interrupt();
 				/*tgp.setLoop(false);*/
 			}
 		}	

@@ -125,46 +125,6 @@ public class TGPlayer {
 		System.out.println(tg);
 		//tgp.playGrid();
 		tgp.loop();
-		/*tgp.play(1);
-		tgp.play(2);
-		tgp.play(1);
-		tgp.play(2);
-
-		tgp.play(5);
-		tgp.play(6);
-		tgp.play(5);
-		tgp.play(6);
-		
-		tgp.play(1);
-		tgp.play(2);
-		tgp.play(1);
-		tgp.play(2);
-		
-		tgp.play(5);
-		tgp.play(6);
-		tgp.play(5);
-		tgp.play(6);
-		
-		tgp.play(1);
-		tgp.play(2);
-		tgp.play(1);
-		tgp.play(2);
-
-		tgp.play(5);
-		tgp.play(6);
-		tgp.play(5);
-		tgp.play(6);
-		
-		tgp.play(1);
-		tgp.play(2);
-		tgp.play(1);
-		tgp.play(2);
-		
-		tgp.play(5);
-		tgp.play(6);
-		tgp.play(5);
-		tgp.play(6);
-		*/
 		
 	}
 }
