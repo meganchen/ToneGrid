@@ -22,9 +22,7 @@ public class ControlPanel extends JPanel{
 	public ControlPanel(ToneGrid t, TGPlayer player){
 		tg = t;
 		tgp = player;
-		gridThread = new Thread(new Runnable(){ 
-			public void run(){
-				tgp.loop(); }});
+		createGridThread();
 
 		ButtonListener blistener = new ButtonListener();
 
@@ -38,7 +36,7 @@ public class ControlPanel extends JPanel{
 
 		pause = new JButton("Pause");
 		pause.setPreferredSize(new Dimension(110, 30));
-		start.addActionListener(blistener);
+		pause.addActionListener(blistener);
 
 		save = new JButton("Save");
 		save.setPreferredSize(new Dimension(110, 30));
@@ -68,6 +66,31 @@ public class ControlPanel extends JPanel{
 		add(save); add(load);
 	}
 	
+	/*createGridThread method. Creates a new thread for playing the ToneGrid
+	*/
+	protected void createGridThread(){
+		gridThread = new Thread(new Runnable(){ 
+			public void run(){
+				//while (!gridThread.interrupted()){
+					tgp.loop();
+					//}
+					
+			/*Thread thisThread = Thread.currentThread();
+			        while (blinker == thisThread) {
+			            try {
+			                thisThread.sleep(interval);
+			            } 
+						catch (InterruptedException e){}
+			            repaint();
+					}*/
+			}
+			public void stop(){
+				gridThread = null;
+			}
+		});
+	}
+	
+	/*ButtonListener class*/
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed (ActionEvent event){
 			if(event.getSource() == clear){
@@ -94,15 +117,12 @@ public class ControlPanel extends JPanel{
 
 			}
 			else if(event.getSource() == start){
+				createGridThread();
 				//thread starts playing the ToneGrid
 				gridThread.start();
-				//tgp.loop();
-				/*tgp.setLoop(true);
-				Thread t = new Thread(new Runnable() {public void run() {tgp.loop();}});
-				t.start();*/
 			}
 			else if(event.getSource() == pause){
-				gridThread.interrupt();
+				gridThread.stop();
 				/*tgp.setLoop(false);*/
 			}
 		}	
