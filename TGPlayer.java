@@ -40,28 +40,6 @@ public class TGPlayer {
 			scale.add("F7"); scale.add("G7"); scale.add("A7"); scale.add("C8"); 
 		}*/
 	}
-
-	//creates a player to play the whole column of notes, specified by the vertical booleans in LinkedList
-	public void play(int column) {
-		p = new Player();
-		String s = "I[Xylophone] ";
-		LinkedList<Integer> notes = tg.colTraverse(column);
-		System.out.println("notes: " + notes);
-		System.out.println("empty: " + notes.isEmpty());
-		if (notes.isEmpty()){
-			s = "Rs";
-		}
-		else{
-			for(int i = 0; i < notes.size(); i++){
-					s += scale.get(notes.get(i)) + "s";
-					if(i+1 < notes.size())
-						s += "+";
-			}
-		}
-		System.out.println(s  + "\n-----");
-		p.play(s);
-		p.close();
-	}
 	
 	/*playGrid() tester method. Plays the entire grid once. 
 	* NOTE: not used in implementation of ToneGrid
@@ -99,11 +77,36 @@ public class TGPlayer {
 		}
 	}
 	
+	/*creates a player to play the whole column of notes, specified by the vertical booleans in LinkedList
+	*@param column the column that is being played
+	*/
+	public void play(int column) {
+		p = new Player();
+		String s = "I[Xylophone] ";
+		LinkedList<Integer> notes = tg.colTraverse(column);
+		System.out.println("notes: " + notes);
+		System.out.println("empty: " + notes.isEmpty());
+		if (notes.isEmpty()){
+			s += "X[Volume]=0 C5maj7s";
+		}
+		else{
+			for(int i = 0; i < notes.size(); i++){
+					s += scale.get(notes.get(i)) + "s";
+					if(i+1 < notes.size())
+						s += "+";
+			}
+		}
+		System.out.println(s  + "\n-----");
+		p.play(s);
+		p.close();
+	}
+	
 	/*loop method. Plays through the grid in a loop.
 	*/		
 	public void loop(){
 		int i = 0;
 		while(true){
+			System.out.println("Note #" + i);
 			play(i % ToneGrid.GRID_DIMENSION);
 			i++;
 		}
