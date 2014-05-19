@@ -16,15 +16,13 @@ public class ControlPanel extends JPanel{
 	private JButton clear, start, pause, save, load, selectMode;
 	private JTextField saveTextBox;
 	private JComboBox loadBox, modeBox;
-	private Thread thread;
+	private Thread gridThread;
 	
 	//constructor
 	public ControlPanel(ToneGrid t, TGPlayer player){
 		tg = t;
 		tgp = player;
-		thread = new Thread(new Runnable(){ 
-			public void run(){
-				tgp.loop(); }});
+		createGridThread();
 
 		ButtonListener blistener = new ButtonListener();
 
@@ -38,7 +36,7 @@ public class ControlPanel extends JPanel{
 
 		pause = new JButton("Pause");
 		pause.setPreferredSize(new Dimension(110, 30));
-		start.addActionListener(blistener);
+		pause.addActionListener(blistener);
 
 		save = new JButton("Save");
 		save.setPreferredSize(new Dimension(110, 30));
@@ -68,6 +66,31 @@ public class ControlPanel extends JPanel{
 		add(save); add(load);
 	}
 	
+	/*createGridThread method. Creates a new thread for playing the ToneGrid
+	*/
+	protected void createGridThread(){
+		gridThread = new Thread(new Runnable(){ 
+			public void run(){
+				//while (!gridThread.interrupted()){
+					tgp.loop();
+					//}
+					
+			/*Thread thisThread = Thread.currentThread();
+			        while (blinker == thisThread) {
+			            try {
+			                thisThread.sleep(interval);
+			            } 
+						catch (InterruptedException e){}
+			            repaint();
+					}*/
+			}
+			public void stop(){
+				gridThread = null;
+			}
+		});
+	}
+	
+	/*ButtonListener class*/
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed (ActionEvent event){
 			if(event.getSource() == clear){
@@ -94,6 +117,7 @@ public class ControlPanel extends JPanel{
 
 			}
 			else if(event.getSource() == start){
+<<<<<<< HEAD
 <<<<<<< HEAD
 				tgp.setLoop(true);
 				
@@ -122,9 +146,14 @@ public class ControlPanel extends JPanel{
 				Thread t = new Thread(new Runnable() {public void run() {tgp.loop();}});
 				t.start();*/
 >>>>>>> FETCH_HEAD
+=======
+				createGridThread();
+				//thread starts playing the ToneGrid
+				gridThread.start();
+>>>>>>> FETCH_HEAD
 			}
 			else if(event.getSource() == pause){
-				thread.interrupt();
+				gridThread.stop();
 				/*tgp.setLoop(false);*/
 			}
 		}	
