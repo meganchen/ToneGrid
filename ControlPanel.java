@@ -117,7 +117,12 @@ public class ControlPanel extends JPanel{
 				tgp.setMode(modeSelected);
 				MessagePanel.setMsg(modeSelected + " selected.");
 			}
+<<<<<<< HEAD
 			else if(event.getSource() == play){
+=======
+			else if(event.getSource() == start){
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
 				if(!gridPlaying){
 					createGridThread();
 					gridThread.start(); //thread starts playing the ToneGrid
@@ -126,8 +131,47 @@ public class ControlPanel extends JPanel{
 				}
 				else{
 					System.out.println("Input Error: Grid Already Playing");
+<<<<<<< HEAD
 					MessagePanel.setMsg("Grid is already playing");
 				}
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+				tgp.setLoop(true);
+				
+				//using a new thread
+				/*Thread t = new Thread(new Runnable() {public void run() {tgp.loop();}});
+				t.start();*/
+
+				//using SwingWorker
+				/*SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+           			@Override
+            		protected Void doInBackground()
+            		{
+                		return tgp.loop();
+            		}
+            		@Override
+            		protected void done()
+            		{
+                	}
+        		};
+        		worker.execute();*/
+=======
+				//thread starts playing the ToneGrid
+				thread.start();
+				//tgp.loop();
+				/*tgp.setLoop(true);
+				Thread t = new Thread(new Runnable() {public void run() {tgp.loop();}});
+				t.start();*/
+>>>>>>> FETCH_HEAD
+=======
+				createGridThread();
+				//thread starts playing the ToneGrid
+				gridThread.start();
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
 			}
 			else if(event.getSource() == pause){
 				gridThread.stop();
