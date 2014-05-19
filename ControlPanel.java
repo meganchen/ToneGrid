@@ -46,7 +46,7 @@ public class ControlPanel extends JPanel{
 
 		selectMode = new JButton("Select mode");
 		selectMode.setPreferredSize(new Dimension(110, 30));
-		load.addActionListener(blistener);
+		selectMode.addActionListener(blistener);
 
 		saveTextBox = new JTextField("Enter name");
 		saveTextBox.setPreferredSize(new Dimension(110, 30));
@@ -69,7 +69,7 @@ public class ControlPanel extends JPanel{
 	
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed (ActionEvent event){
-			if(event.getSource() == clear) {
+			if(event.getSource() == clear){
 				tg.clear();
 				ToneGridPanel.setBoxes();
 			}
@@ -81,19 +81,18 @@ public class ControlPanel extends JPanel{
 					loadBox.addItem(saveTextBox.getText());
 				}
 			}
-			else if(event.getSource() == load) {
+			else if(event.getSource() == load){
 				tg.clear();
 				System.out.println(loadBox.getSelectedItem());
 				tg.load((String)loadBox.getSelectedItem());
 				ToneGridPanel.setBoxes();
 			}
-			else if(event.getSource() == selectMode) {
+			else if(event.getSource() == selectMode){
 				System.out.println(modeBox.getSelectedItem());
-				tg.clear();
 				tgp.setMode((String)modeBox.getSelectedItem()); 
 
 			}
-			else if(event.getSource() == start) {
+			else if(event.getSource() == start){
 				System.out.println("starting");
 				tgp.loop();
 			}

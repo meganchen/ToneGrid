@@ -19,7 +19,7 @@ public class TGPlayer {
 		scale = new LinkedList<String>();
 		p = new Player();
 		tg = toneGrid;
-		setMode("mode1");
+		setMode("Mode 1");
 		
 		/*if(scaleInput.equals("mode3")){
 			scale.add("C5"); scale.add("D#5"); scale.add("F5"); scale.add("G#5"); 
@@ -52,7 +52,7 @@ public class TGPlayer {
 			if(i+1 < notes.size())
 				s += "+";
 		}
-		if (notes.isEmpty())
+		if (notes.isEmpty())//notes.size() == 0
 			s = "Rs";
 		System.out.println(s);
 		p.play(s);
@@ -71,29 +71,27 @@ public class TGPlayer {
 	/*setMode() setter. Sets the scale LinkedList<String> instance variable to
 		the specified scale. The options are mode1, mode2, mode3.*/	
 	public static void setMode(String modeInput) {
-		if(modeInput.equals("mode1")){
-			scale.clear();
+		scale.clear();
+		if(modeInput.equals("Mode 1")){
 			scale.add("C8"); scale.add("A7"); scale.add("G7"); scale.add("F7");
 			scale.add("D7"); scale.add("C7"); scale.add("A6"); scale.add("G6");  
 			scale.add("F6"); scale.add("D6"); scale.add("C6"); scale.add("A5");  
 			scale.add("G5"); scale.add("F5"); scale.add("D5"); scale.add("C5");
 		}
-		else if(modeInput.equals("mode2")){
-			scale.clear();
+		else if(modeInput.equals("Mode 2")){
 			scale.add("C8"); scale.add("A7"); scale.add("G7"); scale.add("E7"); 
 			scale.add("D7"); scale.add("C7"); scale.add("A6"); scale.add("G6"); 
 			scale.add("E6"); scale.add("D6"); scale.add("C6"); scale.add("A5");
 			scale.add("G5"); scale.add("E5"); scale.add("D5"); scale.add("C5"); 	
 		}
-		else if(modeInput.equals("mode3")){
-			scale.clear();
+		else if(modeInput.equals("Mode 3")){
 			scale.add("C8"); scale.add("A#7"); scale.add("G#7"); scale.add("F7"); 
 			scale.add("D#7"); scale.add("C7"); scale.add("A#6"); scale.add("G#6"); 
-			scale.add("F6"); scale.add("D#6"); scale.add("C6");scale.add("A#5");  
+			scale.add("F6"); scale.add("D#6"); scale.add("C6"); scale.add("A#5");  
 			scale.add("G#5"); scale.add("F5"); scale.add("D#5"); scale.add("C5"); 
 		}		
-		else {
-			System.out.println("Choose mode1, mode2, or mode3.");
+		else{
+			System.out.println("Choose Mode 1, Mode 2, or Mode 3.");
 		}
 	}
 	
@@ -109,7 +107,7 @@ public class TGPlayer {
 	
 	public static void main(String[]args){
 		ToneGrid tg = new ToneGrid();
-		TGPlayer tgp = new TGPlayer("mode1", tg);
+		TGPlayer tgp = new TGPlayer("Mode 1", tg);
 		for(int i = 0; i < ToneGrid.GRID_DIMENSION; i++){
 			tg.toggle(i,i);
 			tg.toggle(i, (i + 2) % ToneGrid.GRID_DIMENSION);
