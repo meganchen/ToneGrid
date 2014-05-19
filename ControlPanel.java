@@ -12,34 +12,41 @@ import java.util.*;
 
 public class ControlPanel extends JPanel{
 	private ToneGrid tg;
+	private TGPlayer tgp;
 	private JButton clear, start, pause, save, load, selectMode;
 	private JTextField saveTextBox;
 	private JComboBox loadBox, modeBox;
 	
 	//constructor
-	public ControlPanel(ToneGrid t){
+	public ControlPanel(ToneGrid t, TGPlayer player){
 		tg = t;
+		tgp = player;
+
+		ButtonListener blistener = new ButtonListener();
 
 		clear = new JButton("Clear");
 		clear.setPreferredSize(new Dimension(110, 30));
-		clear.addActionListener(new ButtonListener());
+		clear.addActionListener(blistener);
 
 		start = new JButton("Start");
 		start.setPreferredSize(new Dimension(110, 30));
+		start.addActionListener(blistener);
 
 		pause = new JButton("Pause");
 		pause.setPreferredSize(new Dimension(110, 30));
+		start.addActionListener(blistener);
 
 		save = new JButton("Save");
 		save.setPreferredSize(new Dimension(110, 30));
-		save.addActionListener(new ButtonListener());
+		save.addActionListener(blistener);
 
 		load = new JButton("Load");
 		load.setPreferredSize(new Dimension(110, 30));
-		load.addActionListener(new ButtonListener());
+		load.addActionListener(blistener);
 
 		selectMode = new JButton("Select mode");
 		selectMode.setPreferredSize(new Dimension(110, 30));
+		load.addActionListener(blistener);
 
 		saveTextBox = new JTextField("Enter name");
 		saveTextBox.setPreferredSize(new Dimension(110, 30));
@@ -76,12 +83,19 @@ public class ControlPanel extends JPanel{
 			}
 			else if(event.getSource() == load) {
 				tg.clear();
+				System.out.println(loadBox.getSelectedItem());
 				tg.load((String)loadBox.getSelectedItem());
 				ToneGridPanel.setBoxes();
 			}
 			else if(event.getSource() == selectMode) {
+				System.out.println(modeBox.getSelectedItem());
 				tg.clear();
-				//tg.setMode(); //write this in ToneGrid.java
+				tgp.setMode((String)modeBox.getSelectedItem()); 
+
+			}
+			else if(event.getSource() == start) {
+				System.out.println("starting");
+				tgp.loop();
 			}
 		}	
 	}

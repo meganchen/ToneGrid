@@ -14,7 +14,8 @@ public class ToneGridGUI {
 		//frame.setResizable(false);
 		
 		ToneGrid tg = new ToneGrid();
-		ToneGridPanel tgp = new ToneGridPanel(tg);
+		TGPlayer player = new TGPlayer("mode1", tg);
+		ToneGridPanel tgp = new ToneGridPanel(tg, player);
 		frame.add(tgp);
 
 		frame.pack();
