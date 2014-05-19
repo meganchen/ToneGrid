@@ -17,12 +17,14 @@ public class ControlPanel extends JPanel{
 	private JTextField saveTextBox;
 	private JComboBox loadBox, modeBox;
 	private Thread gridThread;
+	private boolean gridPlaying; //tells whether or not the ToneGrid is currently playing
 	
 	//constructor
 	public ControlPanel(ToneGrid t, TGPlayer player){
 		tg = t;
 		tgp = player;
 		createGridThread();
+		gridPlaying = false;
 
 		ButtonListener blistener = new ButtonListener();
 
@@ -69,25 +71,17 @@ public class ControlPanel extends JPanel{
 	/*createGridThread method. Creates a new thread for playing the ToneGrid
 	*/
 	protected void createGridThread(){
-		gridThread = new Thread(new Runnable(){ 
-			public void run(){
-				//while (!gridThread.interrupted()){
+		//checks to see if the thread is already playing
+			gridThread = new Thread(new Runnable(){ 
+				public void run(){
+					gridThread = Thread.currentThread();
 					tgp.loop();
-					//}
-					
-			/*Thread thisThread = Thread.currentThread();
-			        while (blinker == thisThread) {
-			            try {
-			                thisThread.sleep(interval);
-			            } 
-						catch (InterruptedException e){}
-			            repaint();
-					}*/
-			}
-			public void stop(){
-				gridThread = null;
-			}
-		});
+				}
+				public void stop(){
+					gridThread = null;
+				}
+			});
+		
 	}
 	
 	/*ButtonListener class*/
@@ -117,13 +111,17 @@ public class ControlPanel extends JPanel{
 
 			}
 			else if(event.getSource() == start){
-				createGridThread();
-				//thread starts playing the ToneGrid
-				gridThread.start();
+				if(!gridPlaying){
+					createGridThread();
+					gridThread.start(); //thread starts playing the ToneGrid
+					gridPlaying = true;
+				}
+				else
+					System.out.println("Input Error: Grid Already Playing");
 			}
 			else if(event.getSource() == pause){
 				gridThread.stop();
-				/*tgp.setLoop(false);*/
+				gridPlaying = false;
 			}
 		}	
 	}
