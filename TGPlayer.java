@@ -14,6 +14,7 @@ public class TGPlayer {
 										//mode3 (idk): CD#FG#A#CD#FG#A#CD#FG#A#C
 	private Player p;
 	private ToneGrid tg;
+	private Boolean loopBool;
 
 	public TGPlayer(String scaleInput, ToneGrid toneGrid) {
 		scale = new LinkedList<String>();
@@ -101,12 +102,18 @@ public class TGPlayer {
 	
 	/*loop method. Plays through the grid in a loop.
 	*/		
-	public void loop(){
+	public Void loop(){
+		Void v = null;
 		int i = 0;
-		while(true){
+		while(loopBool){
 			play(i % ToneGrid.GRID_DIMENSION);
 			i++;
 		}
+		return v;
+	}
+
+	public void setLoop(Boolean b) {
+		loopBool = b;
 	}
 	
 	public static void main(String[]args){

@@ -91,8 +91,24 @@ public class ControlPanel extends JPanel{
 			}
 			else if(event.getSource() == start){
 				tgp.setLoop(true);
-				Thread t = new Thread(new Runnable() {public void run() {tgp.loop();}});
-				t.start();
+				
+				//using a new thread
+				/*Thread t = new Thread(new Runnable() {public void run() {tgp.loop();}});
+				t.start();*/
+
+				//using SwingWorker
+				/*SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+           			@Override
+            		protected Void doInBackground()
+            		{
+                		return tgp.loop();
+            		}
+            		@Override
+            		protected void done()
+            		{
+                	}
+        		};
+        		worker.execute();*/
 			}
 			else if(event.getSource() == pause) {
 				tgp.setLoop(false);
