@@ -1,6 +1,6 @@
-/**ToneGrid class. Contains the LinkedLists that keep track of which notes are selected in the tone grid.
+/**ToneGrid class. Contains the LinkedList of LinkedList<Boolean>s that keep track of which notes are selected in the ToneGrid. Includes methods to manipulate (toggle() between true and false) locations in the ToneGrid, and return information about different locations in the grid(specific boxes, columns),  play sounds according to the boolean values stored in the LinkedLists, and save/load/clear the state ToneGrid.
 
-Author: Megan Chen
+Author: Megan Chen (primary) and Galen Chuang (setMode method)
 Date Created: May 6, 2014
 **/
 
@@ -39,12 +39,12 @@ public class ToneGrid{
 			//traverses the inner "notes" linked list of booleans
 			for(int j = 0; j < GRID_DIMENSION; j++){
 				Boolean b = getBool(j,i);
-				if(b)
+				if(b) //if the stored value is true, print "T"
 					s += "T ";
-				else
+				else //if the stored value is true, print "-"
 					s += "- ";
 			}
-			s += "\n";
+			s += "\n";  //at the end of each row, go to the next line
 		}
 		return s;
 	}
@@ -58,8 +58,8 @@ public class ToneGrid{
 	}
 	
 	/*getBool(). Gets the boolean value of a particular location in the ToneGrid
-	*@param numBeat beat number (index in "beats" LinkedList)
-	*@param numNote note number (index in "notes" LinkedList)
+	*@param numBeat beat number (index in "beats" LinkedList) [col]
+	*@param numNote note number (index in "notes" LinkedList) [row]
 	*@return the location's value (true/false)
 	*/
 	public boolean getBool(int numBeat, int numNote){
@@ -67,16 +67,16 @@ public class ToneGrid{
 	}
 	
 	/*setTrue(). Sets the note at a particular location in the ToneGrid as true.
-	*@param numBeat beat number (index in "beats" LinkedList)
-	*@param numNote note number (index in "notes" LinkedList)
+	*@param numBeat beat number (index in "beats" LinkedList) [col]
+	*@param numNote note number (index in "notes" LinkedList) [row]
 	*/
 	public void setTrue(int numBeat, int numNote){
 		getCol(numBeat).set(numNote, true);
 	}
 	
 	/*setFalse(). Sets a particular location in the ToneGrid as false.
-	*@param numBeat beat number (index in "beats" LinkedList)
-	*@param numNote note number (index in "notes" LinkedList)
+	*@param numBeat beat number (index in "beats" LinkedList) [col]
+	*@param numNote note number (index in "notes" LinkedList) [row]
 	*/
 	public void setFalse(int numBeat, int numNote){
 		getCol(numBeat).set(numNote, false);
@@ -127,14 +127,16 @@ public class ToneGrid{
 	
 	/* save method. Save the current state of the ToneGrid to the grids Hashtable
 	*@param tgName the name under which the ToneGrid will be saved.
+	*@return true if the save was successful, false if not.
 	*Precondition: tgName doesn't already exist. If tgName already exists, program will print a message.
 	*/
 	public Boolean save(String tgName){
+		//if tgName doesn't exist in grids Hashtable, add to grid. and returns true
 		if(grids.get(tgName) == null){
 			grids.put(tgName, beats);
 			return true;
 		}
-		else
+		else //if exists, print error message and returns false
 			System.out.println("Save Error: " + tgName + " already exists.");
 		return false;
 	}
@@ -144,12 +146,16 @@ public class ToneGrid{
 	*Precondition: tgName exists. If tgName doesn't exist, program will print a message.
 	*/
 	public void load(String tgName){
+		//if tgName key exists in grids Hashtable, load it
 		if(grids.get(tgName) != null)
 			beats = grids.get(tgName);
-		else
+		else //if doesn't exist, print error message
 			System.out.println("Load Error: " + tgName + " does not exist.");
 	}
 	
+	/*setMode method
+	*@param modeInput the mode to play ["Mode 1", "Mode 2", or "Mode 3"]
+	*/
 	public void setMode(String modeInput) {
 		TGPlayer.setMode(modeInput);
 	}

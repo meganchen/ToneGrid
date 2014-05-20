@@ -1,5 +1,5 @@
-/*ControlPanel class. 
-Controls the clear, start, pause, select mode, save, and load buttons.
+/*ToneGridPanel class. 
+Places the TitlePanel, GridPanel, ControlPanel, MessagePanel, and FooterPanel into a single panel.
 
 Date Created: May 17, 2014
 Author: Megan Chen
@@ -35,7 +35,9 @@ public class ToneGridPanel extends JPanel{
 		add(fp);
 	}
 	
-	//clears the ToneGrid
+	/*setBoxes method.
+	* Sets the grid in the GridPanel to the state current of the ToneGrid
+	*/
 	public static void setBoxes(){
 		gp.setBoxes();
 	}

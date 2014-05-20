@@ -9,6 +9,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class TitlePanel extends JPanel{
+	//TitlePanel() constructor
 	public TitlePanel(){
 		setPreferredSize(new Dimension(370,30));
 		setBackground(Color.BLACK);
